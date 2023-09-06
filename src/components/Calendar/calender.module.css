@@ -1,20 +1,21 @@
-
-.calender{
+.calender {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
-.calenderDays{
+
+.calenderDays {
     display: flex;
     width: 100%;
-justify-content: space-between;
+    justify-content: space-between;
 }
 
-.calanderDay{
-width: 100%;
+.calanderDay {
+    width: 100%;
 
 }
-.calanderDayTitle{
+
+.calanderDayTitle {
     background-color: #545254;
     font-weight: 400;
     text-transform: uppercase;
@@ -23,53 +24,98 @@ width: 100%;
     padding: 10px;
     letter-spacing: 1px;
 }
-.foodBoxContainer{
+
+.foodBoxContainer {
     width: 100%;
     height: auto;
 }
-.foodBoxTitle{
-    min-height:10px ;
+
+.foodBoxTitle {
+    min-height: 10px;
     font-weight: 600;
     padding: 10px;
-    
+
     color: #63323d;
     border: 0.5px solid rgb(230, 230, 230);
 }
-.foodBox{
-    min-height:150px ;
+
+.foodBox {
+    min-height: 150px;
     border: 0.5px solid rgb(230, 230, 230);
-        
+
     background-color: transparent;
 }
 
-.breakFastTitle{
+.breakFastTitle {
     font-weight: 600;
     padding: 10px 0px 0px 10px;
     color: #BAB197;
 }
-.lunchTitle{
+
+.lunchTitle {
     padding: 10px 0px 0px 10px;
     font-weight: 600;
     color: #916162;
 }
-.dinnerTitle{
+
+.dinnerTitle {
     padding: 10px 0px 0px 10px;
     font-weight: 600;
     color: #616D74;
 }
-.dropZone{
+
+.dropZone {
     height: auto;
     min-height: 100px;
 
 }
-.droppedRecipe{
+
+.droppedRecipe {
     transition: 0.4s;
-    background-color: #fff4ca;  
+    /* background-color: #fff4ca;   */
 }
-.recipeName{
+
+.recipeName {
     padding: 1px 0px 0px 10px;
 }
-.date{
+
+.recipe_name {
+    display: flex;
+    transition: all 0.3s;
+    align-items: center;
+    gap: 0.5em;
+    cursor: grab;
+    justify-content: space-between;
+    border-radius: 10px;
+
+}
+
+/* Initially hide the button */
+.removeButton {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    display: none;
+    transition: all 0.3s;
+    margin-right: 10px;
+    cursor: pointer;
+
+}
+
+/* Show the button when hovering over .recipe_name */
+.recipe_name:hover .removeButton {
+    display: block;
+    transition: all 0.3s;
+
+}
+
+.recipe_name:hover {
+    transform: translateY(-2px);
+    background-color: white;
+    padding: 0.5em 0em;
+}
+
+.date {
     font-weight: 400;
     text-transform: uppercase;
     font-size: 20px;

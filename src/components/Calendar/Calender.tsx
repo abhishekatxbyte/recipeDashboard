@@ -16,16 +16,49 @@ const Calender = () => {
     { day: "sun", foodTime: { breakFast: [], lunch: [], dinner: [] } },
   ]);
 
+  const [isDropSuccess, setIsDropSuccess] = useState(false)
+  const [draggedRecipe, setDrggedRecipe] = useState<any>({})
+  const removeRecipe = (recipeId: any, targetDay: any, targetMeal: any) => {
+    setCalanderDays((prevCalanderDays) => {
+      const updatedCalanderDays = prevCalanderDays.map((day) => {
+        if (day.day === targetDay) {
+          return {
+            ...day,
+            foodTime: {
+              ...day.foodTime,
+              [targetMeal]: day.foodTime[targetMeal].filter(
+                (meal: { id: any; }) => meal.id !== recipeId
+              ),
+            },
+          };
+        }
+        return day;
+      });
+
+      return updatedCalanderDays;
+    });
+  };
+
   const onDrop = (event: any, targetDay: any, targetMeal: any) => {
     event.target.parentElement.parentElement.classList.remove(
       style.droppedRecipe
     );
-
     event.preventDefault();
     const data = JSON.parse(event.dataTransfer.getData("text/plain"));
+
     const { id, recipeName } = data;
 
-    // Check if the recipe already exists in the same day and meal category
+
+
+    if (draggedRecipe.id === id) {
+      if (draggedRecipe.mealTime === targetMeal && draggedRecipe.day === targetDay) {
+        return
+      } else {
+        removeRecipe(draggedRecipe.id, draggedRecipe.day, draggedRecipe.mealTime)
+      }
+    }
+
+
     const recipeExists = calanderDays.some(
       (day: any) =>
         day.day === targetDay &&
@@ -57,15 +90,17 @@ const Calender = () => {
 
   const onDragOver = (event: MouseEvent) => {
     event.preventDefault();
+
+
   };
-  const onDragEnter = (event: any) => {
+  const onDragEnter = (event: any,) => {
     event.preventDefault();
-    // event.stopPropagation();
     event.target.parentElement.parentElement.classList.add(style.droppedRecipe);
+
   };
-  const onDragLeave = (event: any) => {
+  const onDragLeave = (event: any, mealTime: any, day: any) => {
+
     event.preventDefault();
-    // event.stopPropagation();
     event.target.parentElement.parentElement.classList.remove(
       style.droppedRecipe
     );
@@ -74,16 +109,14 @@ const Calender = () => {
   return (
     <div className={style.calender}>
       <div className={style.dateLogic}>
-        {/* <CalendarComponent /> */}
-        {/* <WeekView /> */}
-        {/* <DateComponent /> */}
+
       </div>
       <div className={style.calenderDays}>
         {calanderDays.map((calanderDay, index) => (
           <div className={style.calanderDay} key={index}>
             <h1 className={style.calanderDayTitle}>{calanderDay.day}</h1>
             <div className={style.date}>
-              <p>{index+18}</p>
+              <p>{index + 18}</p>
             </div>
             <div className={style.foodBoxTitle}>
               <p>prep</p>
@@ -99,25 +132,34 @@ const Calender = () => {
                   onDragOver={onDragOver}
                   onDrop={onDrop}
                   day={calanderDay.day}
+                  setDrggedRecipe={setDrggedRecipe}
                   mealTime={"breakFast"}
                   recipes={calanderDay.foodTime.breakFast}
+                  removeRecipe={removeRecipe}
                 />
+
               </div>
               <div className={style.foodBox}>
                 <p className={style.lunchTitle}>lunch</p>
+
                 <DroppedRecipes
                   onDragEnter={onDragEnter}
                   onDragLeave={onDragLeave}
                   onDragOver={onDragOver}
+                  setDrggedRecipe={setDrggedRecipe}
                   onDrop={onDrop}
                   day={calanderDay.day}
                   mealTime={"lunch"}
                   recipes={calanderDay.foodTime.lunch}
+                  removeRecipe={removeRecipe}
                 />
+
               </div>
               <div className={style.foodBox}>
                 <p className={style.dinnerTitle}>dinner</p>
+
                 <DroppedRecipes
+                  setDrggedRecipe={setDrggedRecipe}
                   onDragEnter={onDragEnter}
                   onDragLeave={onDragLeave}
                   onDragOver={onDragOver}
@@ -125,7 +167,9 @@ const Calender = () => {
                   day={calanderDay.day}
                   mealTime={"dinner"}
                   recipes={calanderDay.foodTime.dinner}
+                  removeRecipe={removeRecipe}
                 />
+
               </div>
             </div>
           </div>
@@ -136,3 +180,52 @@ const Calender = () => {
 };
 
 export default Calender;
+
+
+
+
+
+// const [isDropSuccess, setIsDropSuccess] = useState(false)
+// const [darggedRecipe, setDarggedRecipe] = useState(null)
+// const [droppedRecipe, setDroppedRecipe] = useState(null)
+// const onDrop = (event: any, targetDay: any, targetMeal: any) => {
+//   event.target.parentElement.parentElement.classList.remove(
+//     style.droppedRecipe
+//   );
+//   event.preventDefault();
+//   const data = JSON.parse(event.dataTransfer.getData("text/plain"));
+//   setDroppedRecipe(data)
+//   const { id, recipeName } = data;
+//   console.log(darggedRecipe)
+//   console.log(droppedRecipe)
+//   // console.log(targetMeal, id, targetDay,)
+//   console.log(recipeName + "is dropped in " + targetDay + " at mealTime " + targetMeal)
+//   // Check if the recipe already exists in the same day and meal category
+//   const recipeExists = calanderDays.some(
+//     (day: any) =>
+//       day.day === targetDay &&
+//       day.foodTime[targetMeal].some((meal: any) => meal.id === id)
+//   );
+
+//   if (!recipeExists) {
+//     setCalanderDays((prevCalanderDays) => {
+//       const updatedCalanderDays = prevCalanderDays.map((day: any) => {
+//         if (day.day === targetDay) {
+//           return {
+//             ...day,
+//             foodTime: {
+//               ...day.foodTime,
+//               [targetMeal]: [
+//                 ...day.foodTime[targetMeal],
+//                 { id: id, recipeName: recipeName },
+//               ],
+//             },
+//           };
+//         }
+//         return day;
+//       });
+
+//       return updatedCalanderDays;
+//     });
+//   }
+// };

@@ -1,53 +1,51 @@
 // DroppedRecipes.js
+import { useState } from "react";
 import style from "./calender.module.css";
 import { v4 as uuid } from "uuid";
-
+import remove from "./../../assets/close.svg"
 export const DroppedRecipes = ({
   recipes,
   onDragEnter,
   onDragLeave,
   onDragOver,
   onDrop,
+  setDrggedRecipe,
+  removeRecipe,
   day,
   mealTime,
 }: any) => {
   const handleDragStart = (event: any, obj: any) => {
-    console.log(obj.id, "dargged");
-    event.dataTransfer.setData("text/plain", JSON.stringify(obj)); // Set the data for the drag
+    event.dataTransfer.setData("text/plain", JSON.stringify(obj));
   };
 
-  //   const handleDragEnd = (event, obj) => {
-  //     console.log(`Drag ended for recipe: ${obj}`);
-  //     // Remove the class when dragging ends
-  //     // if (event.dataTransfer.dropEffect !== "none") {
-  //     //   console.log("object");
-
-  //     //   console.log(obj);
-  //     //   event.currentTarget.remove(); // Remove the element from the source list
-  //     // }
-  //   };
   return (
     <>
       <div
         className={style.dropZone}
         onDrop={(event) => onDrop(event, day, mealTime)}
-        onDragEnter={onDragEnter}
-        onDragLeave={onDragLeave}
+        onDragEnter={(event) => onDragEnter(event, day, mealTime)}
+        onDragLeave={(event) => onDragLeave(event, day, mealTime)}
         onDragOver={onDragOver}
       >
         <div className={style.dropZone}>
           {recipes.map((recipe: any) => (
+
             <div
-              key={uuid()}
-              draggable={true}
-              onDragStart={(e) => handleDragStart(e, recipe)}
-              //   onDragEnd={(e) => handleDragEnd(e, recipe)}
-            >
+              className={style.recipe_name}
+
+              key={uuid()} draggable={true} onDragStart={(e) => handleDragStart(e, recipe, day, mealTime)} onDragOver={() => {
+                setDrggedRecipe({
+                  id: recipe.id,
+                  day: day,
+                  mealTime: mealTime,
+                });
+              }}>
               <p className={style.recipeName}>{recipe.recipeName}</p>
+              <button className={style.removeButton} onClick={() => removeRecipe(recipe.id, day, mealTime)}><img src={remove} width={"20px"} /></button>
             </div>
           ))}
         </div>
-      </div>
+      </div >
     </>
   );
 };
