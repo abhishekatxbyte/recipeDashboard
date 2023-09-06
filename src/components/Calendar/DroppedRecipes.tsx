@@ -3,6 +3,8 @@ import { useState } from "react";
 import style from "./calender.module.css";
 import { v4 as uuid } from "uuid";
 import remove from "./../../assets/close.svg"
+import copy from "./../../assets/copy.svg"
+
 export const DroppedRecipes = ({
   recipes,
   onDragEnter,
@@ -11,12 +13,28 @@ export const DroppedRecipes = ({
   onDrop,
   setDrggedRecipe,
   removeRecipe,
+  setCanCopy,
+  canCopy,
   day,
   mealTime,
 }: any) => {
-  const handleDragStart = (event: any, obj: any) => {
-    event.dataTransfer.setData("text/plain", JSON.stringify(obj));
+  const handleCopyButtonDragEnter = () => {
+    setCanCopy(true);
   };
+
+  // Define a function to handle the drag leave event for the copy button
+
+
+  const handleDragStart = (event: any, obj: any, day: any, mealTime: any) => {
+    event.dataTransfer.setData(
+      "text/plain",
+      JSON.stringify({ ...obj, day: day, mealTime: mealTime })
+    );
+    setCanCopy(false);
+
+  };
+
+
 
   return (
     <>
@@ -41,7 +59,16 @@ export const DroppedRecipes = ({
                 });
               }}>
               <p className={style.recipeName}>{recipe.recipeName}</p>
-              <button className={style.removeButton} onClick={() => removeRecipe(recipe.id, day, mealTime)}><img src={remove} width={"20px"} /></button>
+
+              <div className={style.btns}>
+                <button className={style.dragButton}
+                  onDragEnter={handleCopyButtonDragEnter}
+                >
+                  <img src={copy} width={"20px"} />
+                </button>
+
+                <button className={style.removeButton} onClick={() => removeRecipe(recipe.id, day, mealTime)}><img src={remove} width={"20px"} /></button>
+              </div>
             </div>
           ))}
         </div>

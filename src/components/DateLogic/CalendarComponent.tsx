@@ -105,96 +105,7 @@ const CombinedCalendar = () => {
     return <div className="days row">{days}</div>;
   };
 
-  // const renderCells = () => {
-  //   const dateFormat = "d";
-  //   const rows = [];
-  //   let days = [];
-  //   let day = startOfWeek(currentDate, { weekStartsOn: firstDayOfWeek });
 
-  //   const endDate = isMonthView
-  //     ? lastDayOfWeek(endOfMonth(currentDate), { weekStartsOn: firstDayOfWeek })
-  //     : addDays(currentDate, 6); // Adjust the end date for week view
-  //   console.log(firstDayOfWeek);
-  //   let rowIndex = 0; // Added to track the index of rows
-
-  //   while (day <= endDate) {
-  //     for (let i = 0; i < 7; i++) {
-  //       const formattedDate = format(day, dateFormat);
-  //       const cloneDay = day;
-  //       days.push(
-  //         <div
-  //           className={`col cell ${
-  //             isSameDay(day, new Date())
-  //               ? "today"
-  //               : isSameDay(day, selectedDate)
-  //               ? "selected"
-  //               : ""
-  //           }`}
-  //           key={day}
-  //           onClick={() => {
-  //             const dayStr = format(cloneDay, "ccc dd MMM yy");
-  //             onDateClickHandle(cloneDay, dayStr);
-  //           }}
-  //         >
-  //           <span>{formattedDate}</span>
-  //         </div>
-  //       );
-  //       day = addDays(day, 1);
-  //     }
-
-  //     rows.push(
-  //       <div className="row" key={rowIndex}>
-  //         {days}
-  //       </div>
-  //     );
-  //     days = [];
-  //     rowIndex++; // Increment the row index
-  //   }
-
-  //   return <div className="body">{rows}</div>;
-  // };
-  // const renderCells = () => {
-  //   const dateFormat = "d";
-  //   const rows = [];
-  //   let days = [];
-  //   let day = startOfWeek(currentDate, { weekStartsOn: firstDayOfWeek });
-
-  //   const endDate = isMonthView
-  //     ? lastDayOfWeek(endOfMonth(currentDate), { weekStartsOn: firstDayOfWeek })
-  //     : addDays(currentDate, 6); // Adjust the end date for week view
-
-  //   while (day <= endDate) {
-  //     const formattedDate = format(day, dateFormat);
-  //     const cloneDay = day;
-  //     days.push(
-  //       <div
-  //         className={`col cell ${
-  //           isSameDay(day, new Date())
-  //             ? "today"
-  //             : isSameDay(day, selectedDate)
-  //             ? "selected"
-  //             : ""
-  //         }`}
-  //         key={day}
-  //         onClick={() => {
-  //           const dayStr = format(cloneDay, "ccc dd MMM yy");
-  //           onDateClickHandle(cloneDay, dayStr);
-  //         }}
-  //       >
-  //         <span>{formattedDate}</span>
-  //       </div>
-  //     );
-  //     day = addDays(day, 1);
-  //   }
-
-  //   rows.push(
-  //     <div className="row" key={day}>
-  //       {days}
-  //     </div>
-  //   );
-
-  //   return <div className="body">{rows}</div>;
-  // };
   const renderCells = () => {
     const dateFormat = "d";
     const days = [];
@@ -208,13 +119,12 @@ const CombinedCalendar = () => {
       const cloneDay = day;
       days.push(
         <div
-          className={`col cell ${
-            isSameDay(day, new Date())
+          className={`col cell ${isSameDay(day, new Date())
               ? "today"
               : isSameDay(day, selectedDate)
-              ? "selected"
-              : ""
-          }`}
+                ? "selected"
+                : ""
+            }`}
           key={day}
           onClick={() => {
             const dayStr = format(cloneDay, "ccc dd MMM yy");

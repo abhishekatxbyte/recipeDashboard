@@ -77,12 +77,14 @@
 
 .recipeName {
     padding: 1px 0px 0px 10px;
+    align-self: flex-start;
 }
 
 .recipe_name {
     display: flex;
     transition: all 0.3s;
     align-items: center;
+    flex-direction: column;
     gap: 0.5em;
     cursor: grab;
     justify-content: space-between;
@@ -99,12 +101,29 @@
     transition: all 0.3s;
     margin-right: 10px;
     cursor: pointer;
-
+    padding: 0.4em;
+    border-radius: 0.4em;
+    align-items: center;
+    justify-content: center;
 }
+
+.removeButton:hover {
+    background-color: #ffb5b5;
+}
+
+
 
 /* Show the button when hovering over .recipe_name */
 .recipe_name:hover .removeButton {
-    display: block;
+    /* display: block; */
+    display: flex;
+
+    transition: all 0.3s;
+
+}
+
+.recipe_name:hover .dragButton {
+    display: flex;
     transition: all 0.3s;
 
 }
@@ -121,4 +140,28 @@
     font-size: 20px;
     padding: 10px;
     letter-spacing: 1px;
+}
+
+.btns {
+    display: flex;
+    align-self: self-end;
+}
+
+
+.dragButton {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    display: none;
+    transition: all 0.3s;
+    padding: 0.4em;
+    border-radius: 0.4em;
+    cursor: grab;
+    align-items: center;
+    justify-content: center;
+}
+
+.dragButton:hover {
+    background-color: #bed8f7;
+
 }
