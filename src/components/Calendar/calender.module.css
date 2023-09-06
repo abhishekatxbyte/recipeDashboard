@@ -1,0 +1,78 @@
+
+.calender{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.calenderDays{
+    display: flex;
+    width: 100%;
+justify-content: space-between;
+}
+
+.calanderDay{
+width: 100%;
+
+}
+.calanderDayTitle{
+    background-color: #545254;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px;
+    letter-spacing: 1px;
+}
+.foodBoxContainer{
+    width: 100%;
+    height: auto;
+}
+.foodBoxTitle{
+    min-height:10px ;
+    font-weight: 600;
+    padding: 10px;
+    
+    color: #63323d;
+    border: 0.5px solid rgb(230, 230, 230);
+}
+.foodBox{
+    min-height:150px ;
+    border: 0.5px solid rgb(230, 230, 230);
+        
+    background-color: transparent;
+}
+
+.breakFastTitle{
+    font-weight: 600;
+    padding: 10px 0px 0px 10px;
+    color: #BAB197;
+}
+.lunchTitle{
+    padding: 10px 0px 0px 10px;
+    font-weight: 600;
+    color: #916162;
+}
+.dinnerTitle{
+    padding: 10px 0px 0px 10px;
+    font-weight: 600;
+    color: #616D74;
+}
+.dropZone{
+    height: auto;
+    min-height: 100px;
+
+}
+.droppedRecipe{
+    transition: 0.4s;
+    background-color: #fff4ca;  
+}
+.recipeName{
+    padding: 1px 0px 0px 10px;
+}
+.date{
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 20px;
+    padding: 10px;
+    letter-spacing: 1px;
+}

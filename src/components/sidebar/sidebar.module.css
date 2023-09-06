@@ -1,0 +1,9 @@
+.sidebar_container{
+    min-height: 100vh;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    justify-content: center;
+}
