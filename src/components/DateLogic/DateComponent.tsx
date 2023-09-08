@@ -6,11 +6,11 @@ import addDays from "date-fns/addDays";
 import startOfMonth from "date-fns/startOfMonth";
 import endOfMonth from "date-fns/endOfMonth";
 import endOfWeek from "date-fns/endOfWeek";
-import isSameMonth from "date-fns/isSameMonth";
-import isSameDay from "date-fns/isSameDay";
+// import isSameMonth from "date-fns/isSameMonth";
+// import isSameDay from "date-fns/isSameDay";
 import addMonths from "date-fns/addMonths";
 import subMonths from "date-fns/subMonths";
-import parse from "date-fns/parse";
+// import parse from "date-fns/parse";
 const DateComponent = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -73,7 +73,7 @@ const DateComponent = () => {
             onClick={(e) => {
               console.log("jsdfhhdsjf");
             }}
-            // onClick={() => onDateClick(parse(cloneDay))}
+          // onClick={() => onDateClick(parse(cloneDay))}
           >
             <span className="number">{formattedDate}</span>
           </div>

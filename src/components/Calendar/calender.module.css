@@ -97,7 +97,7 @@
     background-color: transparent;
     border: none;
     outline: none;
-    display: none;
+    display: flex;
     transition: all 0.3s;
     margin-right: 10px;
     cursor: pointer;
@@ -114,19 +114,17 @@
 
 
 /* Show the button when hovering over .recipe_name */
-.recipe_name:hover .removeButton {
-    /* display: block; */
+/* .recipe_name:hover .removeButton { */
+/* display: block; */
+/* display: flex; */
+/* transition: all 0.3s; */
+
+/* } */
+
+/* .recipe_name:hover .btns {
     display: flex;
-
     transition: all 0.3s;
-
-}
-
-.recipe_name:hover .dragButton {
-    display: flex;
-    transition: all 0.3s;
-
-}
+} */
 
 .recipe_name:hover {
     transform: translateY(-2px);
@@ -143,16 +141,19 @@
 }
 
 .btns {
-    display: flex;
+    display: none;
     align-self: self-end;
 }
 
+.flex {
+    display: flex;
+}
 
 .dragButton {
     background-color: transparent;
     border: none;
     outline: none;
-    display: none;
+    display: flex;
     transition: all 0.3s;
     padding: 0.4em;
     border-radius: 0.4em;
@@ -163,5 +164,10 @@
 
 .dragButton:hover {
     background-color: #bed8f7;
+}
+
+.unselectable {
+
+    user-select: none;
 
 }

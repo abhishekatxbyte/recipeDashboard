@@ -18,6 +18,7 @@ const Calender = () => {
     { day: "sun", foodTime: { breakFast: [], lunch: [], dinner: [] } },
   ]);
   const [canCopy, setCanCopy] = useState(false)
+  const [isDropSuccess, setIsDropSuccess] = useState(false)
   const [draggedRecipe, setDrggedRecipe] = useState<any>({})
   const removeRecipe = (recipeId: any, targetDay: any, targetMeal: any) => {
     setCalanderDays((prevCalanderDays) => {
@@ -40,7 +41,10 @@ const Calender = () => {
       return updatedCalanderDays;
     });
   };
+  // console.log('should element copyied: ' + canCopy)
+
   const onDrop = (event: any, targetDay: any, targetMeal: any) => {
+    setIsDropSuccess(true)
     setCanCopy(false);
 
     event.target.parentElement.parentElement.classList.remove(
@@ -49,9 +53,8 @@ const Calender = () => {
     event.preventDefault();
     const data = JSON.parse(event.dataTransfer.getData("text/plain"));
     const { id, recipeName } = data;
-
     if (draggedRecipe.id === id) {
-
+      // console.log(draggedRecipe.id === id)
       if (data.day === undefined) {
 
       } else if (canCopy) { }
@@ -93,25 +96,11 @@ const Calender = () => {
       });
     }
   };
-
-  const onDragOver = (event: MouseEvent) => {
-    event.preventDefault();
+  // console.log("You can " + canCopy)
 
 
-  };
-  const onDragEnter = (event: any,) => {
-    event.preventDefault();
-    // setCanCopy(false);
-    event.target.parentElement.parentElement.classList.add(style.droppedRecipe);
 
-  };
-  const onDragLeave = (event: any, mealTime: any, day: any) => {
 
-    event.preventDefault();
-    event.target.parentElement.parentElement.classList.remove(
-      style.droppedRecipe
-    );
-  };
   return (
     <div className={style.calender}>
       <div className={style.dateLogic}>
@@ -133,9 +122,6 @@ const Calender = () => {
                 <p className={style.breakFastTitle}>breakfast</p>
 
                 <DroppedRecipes
-                  onDragEnter={onDragEnter}
-                  onDragLeave={onDragLeave}
-                  onDragOver={onDragOver}
                   onDrop={onDrop}
                   day={calanderDay.day}
                   setDrggedRecipe={setDrggedRecipe}
@@ -151,14 +137,11 @@ const Calender = () => {
                 <p className={style.lunchTitle}>lunch</p>
 
                 <DroppedRecipes
-                  onDragEnter={onDragEnter}
-                  onDragLeave={onDragLeave}
-                  onDragOver={onDragOver}
+                  canCopy={canCopy}
                   setDrggedRecipe={setDrggedRecipe}
                   onDrop={onDrop}
                   day={calanderDay.day}
                   mealTime={"lunch"}
-                  canCopy={canCopy}
                   setCanCopy={setCanCopy}
                   recipes={calanderDay.foodTime.lunch}
                   removeRecipe={removeRecipe}
@@ -170,13 +153,9 @@ const Calender = () => {
 
                 <DroppedRecipes
                   setDrggedRecipe={setDrggedRecipe}
-                  onDragEnter={onDragEnter}
-                  onDragLeave={onDragLeave}
-                  onDragOver={onDragOver}
                   onDrop={onDrop}
                   day={calanderDay.day}
-                  mealTime={"dinner"}
-                  canCopy={canCopy}
+                  mealTime={"dinner"} canCopy={canCopy}
                   setCanCopy={setCanCopy}
                   recipes={calanderDay.foodTime.dinner}
                   removeRecipe={removeRecipe}
