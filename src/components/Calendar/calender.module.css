@@ -20,6 +20,8 @@
     font-weight: 400;
     text-transform: uppercase;
     color: #fff;
+    /* color: #fff7d2; */
+
     font-size: 20px;
     padding: 10px;
     letter-spacing: 1px;
@@ -43,10 +45,10 @@
     min-height: 150px;
     border: 0.5px solid rgb(230, 230, 230);
 
-    background-color: transparent;
+    /* background-color: transparent; */
 }
 
-.breakFastTitle {
+.breakfastTitle {
     font-weight: 600;
     padding: 10px 0px 0px 10px;
     color: #BAB197;
@@ -66,7 +68,9 @@
 
 .dropZone {
     height: auto;
-    min-height: 100px;
+    background-color: #fbf6f5;
+
+    min-height: 150px;
 
 }
 
@@ -76,7 +80,8 @@
 }
 
 .recipeName {
-    padding: 1px 0px 0px 10px;
+    padding: 10px 0px 0px 10px;
+    line-height: 0.8;
     align-self: flex-start;
 }
 
@@ -85,15 +90,30 @@
     transition: all 0.3s;
     align-items: center;
     flex-direction: column;
-    gap: 0.5em;
+    gap: 0em;
     cursor: grab;
-    justify-content: space-between;
+    justify-content: start;
     border-radius: 10px;
 
 }
 
+.members {
+    font-size: 0.8em;
+    align-self: start;
+    padding: 1px 0px 0px 10px;
+
+    display: flex;
+}
+
 /* Initially hide the button */
-.removeButton {
+.btns {
+    display: none;
+    align-self: self-end;
+    justify-content: end;
+
+}
+
+.btns button {
     background-color: transparent;
     border: none;
     outline: none;
@@ -107,24 +127,20 @@
     justify-content: center;
 }
 
+
+.dragButton:hover {
+    cursor: grab;
+}
+
+.userButton:hover {
+    background-color: #c1ffb5;
+
+}
+
 .removeButton:hover {
     background-color: #ffb5b5;
 }
 
-
-
-/* Show the button when hovering over .recipe_name */
-/* .recipe_name:hover .removeButton { */
-/* display: block; */
-/* display: flex; */
-/* transition: all 0.3s; */
-
-/* } */
-
-/* .recipe_name:hover .btns {
-    display: flex;
-    transition: all 0.3s;
-} */
 
 .recipe_name:hover {
     transform: translateY(-2px);
@@ -140,34 +156,16 @@
     letter-spacing: 1px;
 }
 
-.btns {
-    display: none;
-    align-self: self-end;
-}
+
 
 .flex {
     display: flex;
+    align-items: end;
+    gap: 0px;
+    justify-content: end;
 }
 
-.dragButton {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    display: flex;
-    transition: all 0.3s;
-    padding: 0.4em;
-    border-radius: 0.4em;
-    cursor: grab;
-    align-items: center;
-    justify-content: center;
-}
 
 .dragButton:hover {
     background-color: #bed8f7;
-}
-
-.unselectable {
-
-    user-select: none;
-
 }

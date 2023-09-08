@@ -1,29 +1,27 @@
 import { useState } from "react"; // Import useState
 import style from "./calender.module.css";
-import { DroppedRecipes } from "./DroppedRecipes";
-// import DateComponent from "../DateLogic/DateComponent";
-// import WeekView from "../DateLogic/WeekView";
-// import CalendarComponent from "../DateLogic/CalendarComponent";
+import { v4 as uuid } from "uuid";
 
+import { DroppedRecipes } from "./DroppedRecipes";
 const Calender = () => {
 
 
-  const [calanderDays, setCalanderDays] = useState([
-    { day: "mon", foodTime: { breakFast: [], lunch: [], dinner: [] } },
-    { day: "tue", foodTime: { breakFast: [], lunch: [], dinner: [] } },
-    { day: "wed", foodTime: { breakFast: [], lunch: [], dinner: [] } },
-    { day: "thu", foodTime: { breakFast: [], lunch: [], dinner: [] } },
-    { day: "fri", foodTime: { breakFast: [], lunch: [], dinner: [] } },
-    { day: "sat", foodTime: { breakFast: [], lunch: [], dinner: [] } },
-    { day: "sun", foodTime: { breakFast: [], lunch: [], dinner: [] } },
+  const [calanderDays, setCalanderDays] = useState<any>([
+    { day: "mon", foodTime: { breakfast: [], lunch: [], dinner: [] } },
+    { day: "tue", foodTime: { breakfast: [], lunch: [], dinner: [] } },
+    { day: "wed", foodTime: { breakfast: [], lunch: [], dinner: [] } },
+    { day: "thu", foodTime: { breakfast: [], lunch: [], dinner: [] } },
+    { day: "fri", foodTime: { breakfast: [], lunch: [], dinner: [] } },
+    { day: "sat", foodTime: { breakfast: [], lunch: [], dinner: [] } },
+    { day: "sun", foodTime: { breakfast: [], lunch: [], dinner: [] } },
   ]);
   const [canCopy, setCanCopy] = useState(false)
   const [isDropSuccess, setIsDropSuccess] = useState(false)
   const [draggedRecipe, setDrggedRecipe] = useState<any>({})
   const removeRecipe = (recipeId: any, targetDay: any, targetMeal: any) => {
-    setCalanderDays((prevCalanderDays) => {
+    setCalanderDays((prevCalanderDays: any) => {
 
-      const updatedCalanderDays = prevCalanderDays.map((day) => {
+      const updatedCalanderDays = prevCalanderDays.map((day: any) => {
         if (day.day === targetDay) {
           return {
             ...day,
@@ -41,7 +39,6 @@ const Calender = () => {
       return updatedCalanderDays;
     });
   };
-  // console.log('should element copyied: ' + canCopy)
 
   const onDrop = (event: any, targetDay: any, targetMeal: any) => {
     setIsDropSuccess(true)
@@ -52,9 +49,8 @@ const Calender = () => {
     );
     event.preventDefault();
     const data = JSON.parse(event.dataTransfer.getData("text/plain"));
-    const { id, recipeName } = data;
+    const { id, recipeName, members } = data;
     if (draggedRecipe.id === id) {
-      // console.log(draggedRecipe.id === id)
       if (data.day === undefined) {
 
       } else if (canCopy) { }
@@ -75,7 +71,7 @@ const Calender = () => {
     );
 
     if (!recipeExists) {
-      setCalanderDays((prevCalanderDays) => {
+      setCalanderDays((prevCalanderDays: any) => {
         const updatedCalanderDays = prevCalanderDays.map((day: any) => {
           if (day.day === targetDay) {
             return {
@@ -84,7 +80,7 @@ const Calender = () => {
                 ...day.foodTime,
                 [targetMeal]: [
                   ...day.foodTime[targetMeal],
-                  { id: id, recipeName: recipeName },
+                  { id: id, recipeName: recipeName, members: members ? members : 0 },
                 ],
               },
             };
@@ -98,17 +94,17 @@ const Calender = () => {
   };
   // console.log("You can " + canCopy)
 
-
+  const mealTimes = ["breakfast", "lunch", "dinner"]
 
 
   return (
-    <div className={style.calender}>
+    <div className={style.calender} >
       <div className={style.dateLogic}>
 
       </div>
       <div className={style.calenderDays}>
-        {calanderDays.map((calanderDay, index) => (
-          <div className={style.calanderDay} key={index}>
+        {calanderDays.map((calanderDay: any, index: any) => (
+          <div className={style.calanderDay} key={uuid()}>
             <h1 className={style.calanderDayTitle}>{calanderDay.day}</h1>
             <div className={style.date}>
               <p>{index + 18}</p>
@@ -118,50 +114,25 @@ const Calender = () => {
             </div>
 
             <div className={style.foodBoxContainer}>
-              <div className={style.foodBox}>
-                <p className={style.breakFastTitle}>breakfast</p>
+              {mealTimes.map((mealTime: any) => {
+                return <div className={style.foodBox} >
+                  <p className={`${style.mealTime}Title`}>{mealTime}</p>
 
-                <DroppedRecipes
-                  onDrop={onDrop}
-                  day={calanderDay.day}
-                  setDrggedRecipe={setDrggedRecipe}
-                  mealTime={"breakFast"}
-                  canCopy={canCopy}
-                  setCanCopy={setCanCopy}
-                  recipes={calanderDay.foodTime.breakFast}
-                  removeRecipe={removeRecipe}
-                />
+                  <DroppedRecipes
+                    onDrop={onDrop}
+                    isDropSuccess={isDropSuccess}
+                    day={calanderDay.day}
+                    setDrggedRecipe={setDrggedRecipe}
+                    mealTime={mealTime} setIsDropSuccess={setIsDropSuccess}
+                    canCopy={canCopy}
+                    setCanCopy={setCanCopy}
+                    recipes={calanderDay.foodTime[mealTime]}
+                    removeRecipe={removeRecipe}
+                  />
 
-              </div>
-              <div className={style.foodBox}>
-                <p className={style.lunchTitle}>lunch</p>
+                </div>
+              })}
 
-                <DroppedRecipes
-                  canCopy={canCopy}
-                  setDrggedRecipe={setDrggedRecipe}
-                  onDrop={onDrop}
-                  day={calanderDay.day}
-                  mealTime={"lunch"}
-                  setCanCopy={setCanCopy}
-                  recipes={calanderDay.foodTime.lunch}
-                  removeRecipe={removeRecipe}
-                />
-
-              </div>
-              <div className={style.foodBox}>
-                <p className={style.dinnerTitle}>dinner</p>
-
-                <DroppedRecipes
-                  setDrggedRecipe={setDrggedRecipe}
-                  onDrop={onDrop}
-                  day={calanderDay.day}
-                  mealTime={"dinner"} canCopy={canCopy}
-                  setCanCopy={setCanCopy}
-                  recipes={calanderDay.foodTime.dinner}
-                  removeRecipe={removeRecipe}
-                />
-
-              </div>
             </div>
           </div>
         ))}

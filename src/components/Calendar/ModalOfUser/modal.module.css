@@ -1,0 +1,30 @@
+.saveButton {
+    background-color: #fbf6f5;
+    border: 0;
+    cursor: pointer;
+    padding: 0.7em 1em;
+    border-radius: 10px;
+
+    transition: all 0.3s;
+}
+
+.saveButton:hover {
+    background-color: #fff0ed;
+
+}
+
+.memberController {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+.memberButton {
+    background-color: #fbf6f5;
+    border: 0;
+    cursor: pointer;
+    padding: 0.7em 1em;
+    border-radius: 10px;
+    transition: all 0.3s;
+}
