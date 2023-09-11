@@ -15,6 +15,14 @@
 
 }
 
+.placeHolder {
+    display: flex;
+    align-items: center;
+    padding: 1em;
+    transition: all 0.4s;
+    justify-content: center;
+}
+
 .calanderDayTitle {
     background-color: #545254;
     font-weight: 400;
@@ -52,20 +60,19 @@
 .dropZone {
     height: auto;
     background-color: #fbf6f5;
-
     min-height: 150px;
 
 }
 
 .droppedRecipe {
     transition: 0.4s;
-    /* background-color: #fff4ca;   */
 }
 
 .recipeName {
     padding: 10px 0px 0px 10px;
     line-height: 0.8;
     align-self: flex-start;
+
 }
 
 .recipe_name {
@@ -93,6 +100,14 @@
     display: none;
     align-self: self-end;
     transition: all 0.3s;
+    justify-content: end;
+
+}
+
+.recipe_name:hover .btns {
+    display: flex;
+    align-items: end;
+    gap: 0px;
     justify-content: end;
 
 }
@@ -127,8 +142,7 @@
 
 
 .recipe_name:hover {
-    transform: translateY(-2px);
-    background-color: white;
+    background-color: #fbf6f5;
     padding: 0.5em 0em;
 }
 

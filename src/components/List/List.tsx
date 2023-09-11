@@ -1,6 +1,7 @@
 import style from "./list.module.css";
 import drag from "./../../assets/drag.svg";
 import { v4 as uuid } from "uuid";
+import DropDownRecipe from "./DropDownRecipe";
 // import { useAppSelector } from "../../store/hooks";
 const List = () => {
   const recipes = [
@@ -46,45 +47,37 @@ const List = () => {
     }
   ];
   // const recipes = useAppSelector((state: any) => state.recipe.recipes);
-  const handleDragStart = (event: any, recipeName: any, id: any) => {
-    event.currentTarget.classList.add(style.is_dragging);
-    let obj = { id: id, recipeName: recipeName, members: 0 };
-    event.dataTransfer.setData("text/plain", JSON.stringify(obj));
-  };
-
-  const handleDragEnd = (event: any) => {
-    event.currentTarget.classList.remove(style.is_dragging); // Remove the class when dragging ends
-  };
 
   return (
-    <div className={style.list}>
-      {recipes.map((recipe: any) => (
-        <div
-          className={`${style.recipe_name} ${style.draggable}`} // Add the draggable class
-          key={uuid()}
-          draggable={true}
-          onDragStart={(e) => handleDragStart(e, recipe.name, recipe.id)}
-          onDragEnd={handleDragEnd}
-        >
-          <div className={style.image_container}>
-            {" "}
-            <div className={style.recipe_img_container}>
-              <img
-                src={recipe.url}
-                alt="recipeUrl"
-                className={style.recipe_img}
-              />
-            </div>
-            <div>
-              <p>{recipe.name}</p>
-            </div>
-          </div>
-          <div>
-            <img className={style.drag_img} src={drag} alt="drag_img" />
-          </div>
-        </div>
-      ))}
-    </div>
+    // <div className={style.list}>
+
+    //   {recipes.map((recipe: any) => (
+    //     <div
+    //       className={`${style.recipe_name} ${style.draggable}`} // Add the draggable class
+    //       key={uuid()}
+    //       draggable={true}
+    //       onDragStart={(e) => handleDragStart(e, recipe.name, recipe.id)}
+    //       onDragEnd={handleDragEnd}
+    //     >
+    //       <div className={style.image_container}>
+    //         <div className={style.recipe_img_container}>
+    //           <img
+    //             src={recipe.url}
+    //             alt="recipeUrl"
+    //             className={style.recipe_img}
+    //           />
+    //         </div>
+    //         <div>
+    //           <p>{recipe.name}</p>
+    //         </div>
+    //       </div>
+    //       <div>
+    //         <img className={style.drag_img} src={drag} alt="drag_img" />
+    //       </div>
+    //     </div>
+    //   ))}
+    // </div>
+    <DropDownRecipe recipes={recipes} />
   );
 };
 

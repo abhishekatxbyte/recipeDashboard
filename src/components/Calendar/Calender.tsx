@@ -17,6 +17,7 @@ const Calender = () => {
   ]);
   const [canCopy, setCanCopy] = useState(false)
   const [isDropSuccess, setIsDropSuccess] = useState(false)
+
   const [draggedRecipe, setDrggedRecipe] = useState<any>({})
   const removeRecipe = (recipeId: any, targetDay: any, targetMeal: any) => {
     setCalanderDays((prevCalanderDays: any) => {
@@ -114,9 +115,9 @@ const Calender = () => {
             </div>
 
             <div className={style.foodBoxContainer}>
-              {mealTimes.map((mealTime: any) => {
-                return <div className={style.foodBox} >
-                  <p className={`${(mealTime + 'Title')}`}>{mealTime}</p>
+              {mealTimes.map((mealTime: any, index: number) => {
+                return <div className={style.foodBox} key={uuid()}>
+                  <p className={`${(mealTime + 'Title')}`} >{mealTime}</p>
 
                   <DroppedRecipes
                     onDrop={onDrop}

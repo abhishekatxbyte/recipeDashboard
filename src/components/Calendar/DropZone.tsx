@@ -10,15 +10,17 @@ import Users from "./../../assets/users.svg"
 import { useState } from 'react'
 import ModalOfUser from "./ModalOfUser/ModalOfUser";
 
-const DropZone = ({ recipe, handleDragStart, setDrggedRecipe, mealTime, day, handleCopyButtonDragEnter, removeRecipe }: any) => {
-    const [isHovered, setIsHovered] = useState(false);
+const DropZone = ({ recipe, handleDragStart, setDrggedRecipe, mealTime, day, handleCopyButtonDragEnter, removeRecipe, canCopy, setCanCopy }: any) => {
     const [finalMembers, setFinalMembers] = useState(recipe.members || 0)
     const [show, setShow] = useState(false);
     function getFinalMember(member: any) {
         recipe.members = member
         setFinalMembers(member)
     }
+
     const handleShow = () => setShow(true);
+
+    const [isHovered, setIsHovered] = useState(false);
 
     const onMouseEnter = (event: any,) => {
         event.preventDefault();
@@ -40,7 +42,6 @@ const DropZone = ({ recipe, handleDragStart, setDrggedRecipe, mealTime, day, han
         event.preventDefault();
         setIsHovered(false)
     };
-    console.log()
     return (
         <div
             className={style.recipe_name}
@@ -58,7 +59,7 @@ const DropZone = ({ recipe, handleDragStart, setDrggedRecipe, mealTime, day, han
             }}>
             <p className={style.recipeName}>{recipe.recipeName} </p>
             <p className={style.members}>{recipe.members ? `for ${recipe.members} person` : <></>}</p>
-            <div className={` ${style.btns} ${isHovered ? style.flex : style.btns}`} key={uuid()}>
+            <div className={style.btns} key={uuid()}>
                 <ModalOfUser getFinalMember={getFinalMember} recipe={recipe} show={show} setShow={setShow} />
 
                 <button className={style.userButton}
@@ -67,7 +68,8 @@ const DropZone = ({ recipe, handleDragStart, setDrggedRecipe, mealTime, day, han
                     <img src={Users} width={"20px"} />
                 </button>
                 <button className={style.dragButton}
-                    onDragEnter={handleCopyButtonDragEnter}
+                    // onDragEnter={h}
+                    onDragCapture={handleCopyButtonDragEnter}
                 >
                     <img src={copy} width={"20px"} />
                 </button>

@@ -139,7 +139,7 @@ export const DroppedRecipes = ({
   setDrggedRecipe,
   removeRecipe,
   isDropSuccess,
-  setCanCopy,
+  setCanCopy, canCopy,
   setIsDropSuccess,
   day,
   mealTime,
@@ -147,9 +147,9 @@ export const DroppedRecipes = ({
   const [dragEntered, setDragEntered] = useState(false)
   const handleCopyButtonDragEnter = () => {
     setCanCopy(true);
-    setDragEntered(true)
+    // console.log("true from here")
+    // setDragEntered(true)
   };
-
 
 
 
@@ -163,10 +163,10 @@ export const DroppedRecipes = ({
     event.preventDefault();
     setDragEntered(true)
     event.target.parentElement.parentElement.classList.add(style.droppedRecipe);
-
   };
   const onDragLeave = (event: any) => {
     setDragEntered(false)
+
     event.preventDefault();
     event.target.parentElement.parentElement.classList.remove(
       style.droppedRecipe
@@ -199,11 +199,15 @@ export const DroppedRecipes = ({
           backgroundColor: isDropSuccess ? "#fff" : dragEntered ? "#fff7d2" : "#fff",
           transition: "all 0.3s"
         }}>
+
+
           {recipes.map((recipe: any) => (
             <DropZone key={uuid()} recipe={recipe} handleDragStart={handleDragStart}
-              removeRecipe={removeRecipe}
+              removeRecipe={removeRecipe} setCanCopy={setCanCopy} canCopy={canCopy}
               handleCopyButtonDragEnter={handleCopyButtonDragEnter} setDrggedRecipe={setDrggedRecipe} day={day} mealTime={mealTime} />
+
           ))}
+
         </div>
       </div >
 
