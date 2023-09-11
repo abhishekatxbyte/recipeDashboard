@@ -15,3 +15,21 @@ body {
 p {
   margin-bottom: 2px !important;
 }
+
+.breakfastTitle {
+  font-weight: 600;
+  padding: 10px 0px 0px 10px;
+  color: #BAB197;
+}
+
+.lunchTitle {
+  padding: 10px 0px 0px 10px;
+  font-weight: 600;
+  color: #916162;
+}
+
+.dinnerTitle {
+  padding: 10px 0px 0px 10px;
+  font-weight: 600;
+  color: #616D74;
+}

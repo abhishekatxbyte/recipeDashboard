@@ -4,7 +4,6 @@ import userMinus from "./../../../assets/userMinus.svg"
 import style from "./modal.module.css"
 import { useState } from 'react'
 const ModalOfUser = ({ show, setShow, getFinalMember, recipe }: any) => {
-    console.log(recipe.members)
     const [recipeMember, setRecipeMember] = useState(recipe ? recipe.members : 0)
 
     const incrementMember = () => {

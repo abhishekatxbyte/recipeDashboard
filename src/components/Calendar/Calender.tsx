@@ -116,7 +116,7 @@ const Calender = () => {
             <div className={style.foodBoxContainer}>
               {mealTimes.map((mealTime: any) => {
                 return <div className={style.foodBox} >
-                  <p className={`${style.mealTime}Title`}>{mealTime}</p>
+                  <p className={`${(mealTime + 'Title')}`}>{mealTime}</p>
 
                   <DroppedRecipes
                     onDrop={onDrop}

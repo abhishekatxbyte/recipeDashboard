@@ -48,23 +48,6 @@
     /* background-color: transparent; */
 }
 
-.breakfastTitle {
-    font-weight: 600;
-    padding: 10px 0px 0px 10px;
-    color: #BAB197;
-}
-
-.lunchTitle {
-    padding: 10px 0px 0px 10px;
-    font-weight: 600;
-    color: #916162;
-}
-
-.dinnerTitle {
-    padding: 10px 0px 0px 10px;
-    font-weight: 600;
-    color: #616D74;
-}
 
 .dropZone {
     height: auto;
@@ -109,6 +92,7 @@
 .btns {
     display: none;
     align-self: self-end;
+    transition: all 0.3s;
     justify-content: end;
 
 }

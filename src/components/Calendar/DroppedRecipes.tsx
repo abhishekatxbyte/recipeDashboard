@@ -187,7 +187,7 @@ export const DroppedRecipes = ({
   return (
     <>
       <div
-        style={{ backgroundColor: isDropSuccess ? "#fbf6f5" : dragEntered ? "#fff7d2" : "#fbf6f5" }}
+
         className={style.dropZone}
         onDrop={(event) => onDrop(event, day, mealTime)}
         onDragEnter={(event) => onDragEnter(event)}
@@ -195,7 +195,10 @@ export const DroppedRecipes = ({
         onDragOver={onDragOver}
 
       >
-        <div className={style.dropZone}>
+        <div className={style.dropZone} style={{
+          backgroundColor: isDropSuccess ? "#fff" : dragEntered ? "#fff7d2" : "#fff",
+          transition: "all 0.3s"
+        }}>
           {recipes.map((recipe: any) => (
             <DropZone key={uuid()} recipe={recipe} handleDragStart={handleDragStart}
               removeRecipe={removeRecipe}
