@@ -1,0 +1,27 @@
+.details {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1em;
+    gap: 1em;
+}
+
+.recipe_image_container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.recipe_image {
+    width: 100%;
+    max-width: 700px;
+    border-radius: 30px;
+    height: 600px;
+    object-fit: cover;
+}
+
+.recipe_title {
+    padding: 1em;
+    font-size: 28px;
+    border-bottom: 2px solid #fbf6f5;
+}

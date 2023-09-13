@@ -1,0 +1,15 @@
+.nav-tabs .nav-item {
+    width: 100%;
+}
+
+.nav-tabs .nav-item button {
+    width: 100%;
+}
+
+.nav {
+    flex-wrap: nowrap;
+}
+
+.tab-content {
+    width: 100%;
+}

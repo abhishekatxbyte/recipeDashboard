@@ -1,0 +1,21 @@
+.recipes {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    max-height: 600px;
+}
+
+.recipes li {
+    padding: 0.55em 1em;
+    cursor: pointer;
+
+}
+
+.recipes li:hover {
+    color: #fff;
+    background-color: #96A1A5 !important;
+    border-color: #96A1A5 !important;
+}

@@ -1,13 +1,22 @@
-.navbar{
+.navbar {
     align-self: flex-start;
     width: 100%;
     display: flex;
-    justify-content: center ;
+    justify-content: center;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    
+    background-color: #FAF7F5;
     padding: 20px;
-    }
-    .componey_logo{
-        /* width: 100px; */
-        height: 50px;
-    }
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+.componey_logo {
+    /* width: 100px; */
+    height: 50px;
+}
+
+.navbar p {
+    font-size: 14px;
+    letter-spacing: 1px;
+}

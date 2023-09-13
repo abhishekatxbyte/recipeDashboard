@@ -1,0 +1,67 @@
+.nav-item button {
+    width: 100%;
+}
+
+.tab-content>.active {
+    align-items: flex-start;
+    overflow: auto;
+    height: 700px;
+}
+
+.subcat_tabs {
+    display: flex;
+
+    width: 100%;
+}
+
+
+.tabs {
+    width: 100%;
+    flex-direction: column;
+}
+
+.tab-content {
+    display: contents !important;
+}
+
+.recipe_list {
+    align-items: flex-start;
+    overflow: auto;
+    height: 700px;
+    width: 100%;
+}
+
+.recipeList:hover {
+    background-color: #96A1A5 !important;
+}
+
+.tabs.nav-tabs .nav-item.show .nav-link:hover,
+.tabs.nav-tabs .nav-link:hover,
+.tabs.nav-tabs .nav-item.show .nav-link,
+.tabs.nav-tabs .nav-link.active {
+    color: #fff;
+    background-color: #96A1A5 !important;
+    border-color: #96A1A5 !important;
+    box-shadow: none;
+    border-radius: 0;
+    transition: all 0.3;
+
+
+}
+
+.tabs.nav-tabs .nav-item.show .nav-link,
+.tabs.nav-tabs .nav-link {
+    text-align: start;
+    color: #000;
+    box-shadow: none;
+    border-radius: 0;
+    background-color: white;
+    border-color: white;
+}
+
+
+
+.subtab {
+    display: block;
+
+}

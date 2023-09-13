@@ -3,18 +3,12 @@ import style from "./calender.module.css";
 import { v4 as uuid } from "uuid";
 
 import { DroppedRecipes } from "./DroppedRecipes";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { updateCalanderDays } from "../../store/slice";
 const Calender = () => {
-
-
-  const [calanderDays, setCalanderDays] = useState<any>([
-    { day: "mon", foodTime: { breakfast: [], lunch: [], dinner: [] } },
-    { day: "tue", foodTime: { breakfast: [], lunch: [], dinner: [] } },
-    { day: "wed", foodTime: { breakfast: [], lunch: [], dinner: [] } },
-    { day: "thu", foodTime: { breakfast: [], lunch: [], dinner: [] } },
-    { day: "fri", foodTime: { breakfast: [], lunch: [], dinner: [] } },
-    { day: "sat", foodTime: { breakfast: [], lunch: [], dinner: [] } },
-    { day: "sun", foodTime: { breakfast: [], lunch: [], dinner: [] } },
-  ]);
+  const days = useAppSelector(state => state.calanderDays.calanderDays)
+  const [calanderDays, setCalanderDays] = useState(days)
+  const dispatch = useAppDispatch()
   const [canCopy, setCanCopy] = useState(false)
   const [isDropSuccess, setIsDropSuccess] = useState(false)
 
@@ -38,9 +32,9 @@ const Calender = () => {
       });
 
       return updatedCalanderDays;
-    });
-  };
+    })
 
+  };
   const onDrop = (event: any, targetDay: any, targetMeal: any) => {
     setIsDropSuccess(true)
     setCanCopy(false);
@@ -90,13 +84,14 @@ const Calender = () => {
         });
 
         return updatedCalanderDays;
-      });
+      })
+      dispatch(updateCalanderDays(calanderDays))
     }
   };
-  // console.log("You can " + canCopy)
+
+
 
   const mealTimes = ["breakfast", "lunch", "dinner"]
-
 
   return (
     <div className={style.calender} >
@@ -143,7 +138,6 @@ const Calender = () => {
 };
 
 export default Calender;
-
 
 
 

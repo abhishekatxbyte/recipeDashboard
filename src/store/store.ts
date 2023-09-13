@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import RecipeSlice from './slice'
 export const store = configureStore({
   reducer: {
-    recipe: <any>RecipeSlice,
+    calanderDays: <any>RecipeSlice,
   },
 })
 

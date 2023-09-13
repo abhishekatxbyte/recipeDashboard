@@ -15,7 +15,7 @@ const ModalOfUser = ({ show, setShow, getFinalMember, recipe }: any) => {
 
     const handleClose = () => {
         setShow(false)
-        getFinalMember(recipeMember)
+        getFinalMember(recipeMember, recipe)
     };
     return (
         <Modal show={show} onHide={handleClose} centered>

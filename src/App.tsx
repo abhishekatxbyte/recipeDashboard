@@ -1,27 +1,25 @@
-// import { useEffect } from "react";
+// Import necessary components and hooks from React and react-router-dom
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
-import Calender from "./components/Calendar/Calender";
 import Sidebar from "./components/sidebar/Sidebar";
-// import { useAppDispatch, useAppSelector } from "./store/hooks";
-// import { getRecipes } from "./store/slice";
+import DetailRecipe from "./components/DetailRecipe/DetailRecipe";
+import Home from "./components/Home/Home";
+import Calender from "./components/Calendar/Calender";
+import Layout from "./Layout";
 
 function App() {
-  // const dispatch = useAppDispatch();
-  // const state: any = useAppSelector((state) => state.recipe);
-  // useEffect(() => {
-  //   dispatch(getRecipes());
-  // }, []);
+  const navigate = useNavigate()
+
   return (
-    <>
-      {/* {state.loading === "pending" ? (*/}
-        <div style={{ display: "flex" }}> 
-          <Sidebar />
-          <Calender />
-         </div>
-     {/* ) : (
-        <h1>loading..</h1>
-      )} */}
-    </>
+
+
+    <Routes>
+      <Route path="/" element={<Layout component={<Home />} />} />
+      <Route path="/calendar" element={<Layout component={<Calender />} />} />
+      <Route path="/detail-recipe?/:recipecat?/:recipeId?" element={<Layout component={<DetailRecipe />} />} />
+    </Routes>
   );
 }
 
